@@ -128,6 +128,10 @@ elif (test -d "$build/src" && test -n "$(find "$build/src" -type f -name '*.go' 
 then
     ver=${GOVERSION:-$DEFAULT_GO_VERSION}
     TOOL="gb"
+elif (test -f "$build/Godeps")
+then
+    ver=${GOVERSION:-$DEFAULT_GO_VERSION}
+    TOOL="gpm"
 else
     warn "Godep or GB are required. For instructions:"
     warn "https://devcenter.heroku.com/articles/go-support"
@@ -186,7 +190,7 @@ case $TOOL in
         GOBIN=$build/bin export GOBIN
         GOPATH=$build/.heroku/go export GOPATH
         PATH=$GOROOT/bin:$PATH
-        
+
         p=$GOPATH/src/$name
         mkdir -p $p
         cp -R $build/* $p
@@ -263,6 +267,20 @@ case $TOOL in
         cd $build
         step "Running: gb build ${FLAGS[@]}"
         gb build "${FLAGS[@]}"
+
+        step "Post Compile Cleanup"
+        for f in bin/*-heroku; do mv "$f" "${f/-heroku}"; done
+        rm -rf pkg
+    ;;
+    gpm)
+        gpmver="1.4.0"
+        GOBIN=$build/bin export GOBIN
+        GOPATH=$build/.heroku/go export GOPATH
+        PATH=$GOPATH/bin:$GOROOT/bin:$PATH export PATH
+
+        cd $build
+        step "Running: gpm"
+        curl -s https://raw.githubusercontent.com/pote/gpm/v$gpmver/bin/gpm | bash
 
         step "Post Compile Cleanup"
         for f in bin/*-heroku; do mv "$f" "${f/-heroku}"; done
