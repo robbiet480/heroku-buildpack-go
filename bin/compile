@@ -285,7 +285,7 @@ case $TOOL in
 
         cd $build
         step "Running: gpm"
-        gpm get
+        gpm install
     ;;
 esac
 
