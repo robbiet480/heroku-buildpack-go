@@ -287,10 +287,6 @@ case $TOOL in
         cd $build
         step "Running: gpm"
         curl -s https://raw.githubusercontent.com/pote/gpm/v$gpmver/bin/gpm | bash
-
-        step "Post Compile Cleanup"
-        for f in bin/*-heroku; do mv "$f" "${f/-heroku}"; done
-        rm -rf pkg
     ;;
 esac
 
