@@ -282,7 +282,7 @@ case $TOOL in
         then
             echo 'Setting Github personal access token'
             echo 'machine github.com login $GITHUB_PERSONAL_ACCESS_TOKEN' > ~/.netrc
-            echo '.netrc is $(cat ~/.netrc)'
+            echo ".netrc is $(cat ~/.netrc)"
         fi
 
         cd $build
