@@ -281,7 +281,7 @@ case $TOOL in
         if [ -z "$GITHUB_PERSONAL_ACCESS_TOKEN" ]
         then
             echo 'Setting Github personal access token'
-            echo 'machine github.com login $GITHUB_PERSONAL_ACCESS_TOKEN' > ~/.netrc
+            echo "machine github.com login $GITHUB_PERSONAL_ACCESS_TOKEN" > ~/.netrc
             echo ".netrc is $(cat ~/.netrc)"
         fi
 
