@@ -273,7 +273,6 @@ case $TOOL in
         rm -rf pkg
     ;;
     gpm)
-        gpmver="1.4.0"
         GOBIN=$build/bin export GOBIN
         GOPATH=$build/.heroku/go export GOPATH
         PATH=$GOPATH/bin:$GOROOT/bin:$PATH export PATH
@@ -286,7 +285,7 @@ case $TOOL in
 
         cd $build
         step "Running: gpm"
-        curl -s https://raw.githubusercontent.com/pote/gpm/v$gpmver/bin/gpm | bash
+        gpm get
     ;;
 esac
 
