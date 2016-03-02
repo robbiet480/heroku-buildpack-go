@@ -278,6 +278,8 @@ case $TOOL in
         GOPATH=$build/.heroku/go export GOPATH
         PATH=$GOPATH/bin:$GOROOT/bin:$PATH export PATH
 
+        echo "GITHUB_PERSONAL_ACCESS_TOKEN is $GITHUB_PERSONAL_ACCESS_TOKEN"
+
         if [ -z "$GITHUB_PERSONAL_ACCESS_TOKEN" ]
         then
             echo 'Setting Github personal access token'
