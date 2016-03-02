@@ -278,13 +278,10 @@ case $TOOL in
         GOPATH=$build/.heroku/go export GOPATH
         PATH=$GOPATH/bin:$GOROOT/bin:$PATH export PATH
 
-        echo "GITHUB_PERSONAL_ACCESS_TOKEN is $GITHUB_PERSONAL_ACCESS_TOKEN"
-
-        if [ -z "$GITHUB_PERSONAL_ACCESS_TOKEN" ]
+        if [ -n "$GITHUB_PERSONAL_ACCESS_TOKEN" ]
         then
             echo 'Setting Github personal access token'
             echo "machine github.com login $GITHUB_PERSONAL_ACCESS_TOKEN" > ~/.netrc
-            echo ".netrc is $(cat ~/.netrc)"
         fi
 
         cd $build
