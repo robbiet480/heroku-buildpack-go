@@ -280,7 +280,7 @@ case $TOOL in
 
         if [ -n "$GITHUB_PERSONAL_ACCESS_TOKEN" ]
         then
-            echo 'Setting Github personal access token'
+            step "Setting Github personal access token"
             echo "machine github.com login $GITHUB_PERSONAL_ACCESS_TOKEN" > ~/.netrc
         fi
 
