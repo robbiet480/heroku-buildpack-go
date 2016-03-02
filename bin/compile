@@ -278,6 +278,12 @@ case $TOOL in
         GOPATH=$build/.heroku/go export GOPATH
         PATH=$GOPATH/bin:$GOROOT/bin:$PATH export PATH
 
+        if [ -z "$GITHUB_PERSONAL_ACCESS_TOKEN" ]
+        then
+            echo 'Setting Github personal access token'
+            echo 'machine github.com login $GITHUB_PERSONAL_ACCESS_TOKEN' > ~/.netrc
+        fi
+
         cd $build
         step "Running: gpm"
         curl -s https://raw.githubusercontent.com/pote/gpm/v$gpmver/bin/gpm | bash
